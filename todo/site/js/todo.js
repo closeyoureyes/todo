@@ -13,11 +13,13 @@ function makeDoneTodo () {
     queue.push({event:"done", done: false, id: id});
     h4.classList.remove("cross");
     child.style.display = "none";
+    this.parentElement.done = "false";
   } else {
     this.classList.add("load-complete");
     queue.push({event:"done", done: true, id: id});
     h4.classList.add("cross");
     child.style.display = "block";
+    this.parentElement.done = "true";
   }
 }
 
@@ -28,10 +30,12 @@ function alreadyDone () {
     this.classList.remove("load-complete");
     h4.classList.remove("cross");
     child.style.display = "none";
+    this.parentElement.done = "false";
   } else {
     this.classList.add("load-complete");
     h4.classList.add("cross");
     child.style.display = "block";
+    this.parentElement.done = "true";
   }
 }
 
@@ -79,6 +83,7 @@ document.addEventListener('keydown', function(event) {
     }
   }
 });
+
 document.getElementsByClassName("toggle-all")[0].onclick = function () {
   if (this.checked) {
     hidden.forEach(function (elem) {todomother.append(elem)});
@@ -100,3 +105,5 @@ function getTodo () {
     return true;
   } else {return false, false}
 }
+
+//document.getElementsByClassName("todo").forEach
