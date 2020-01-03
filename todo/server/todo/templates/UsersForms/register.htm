@@ -1,0 +1,12 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+  <head>
+    <title>RegisterForm</title>
+  </head>
+  <body>
+    {% csrf_token %}
+    <br/>
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+  </body>
+</html>
