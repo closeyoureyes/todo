@@ -168,12 +168,48 @@ input:focus {
 }
 
 .footer {
+  position: absolute;
   width: fit-content;
   margin: 0 auto;
   margin-bottom: 0px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
-  min-height: 40px;
+  height: 40px;
   min-width: 600px;
   background-color: white;
   box-shadow: 0px -1px 7px rgba(0,0,0,0.35);
+}
+
+.footer h5 {
+  font-family: Rostelecom;
+  font-size: 15px;
+  font-weight: 100;
+  color: gray;
+  position: absolute;
+  margin-top: 12px;
+  margin-left: 18px;
+}
+
+.buttons {
+  width: 45%;
+  height: fit-content;
+  margin: 8px auto;
+}
+
+.sort {
+  width: fit-content;
+  display: inline-block;
+  position: relative;
+  color: gray;
+  padding: 4px;
+  border-color: #c1c1c1;
+  font-family: Rostelecom;
+  font-size: 15px;
+  font-weight: 100;
+  margin-left: 11px;
+  cursor: pointer;
+}
+
+.border {
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 0.5px;
 }

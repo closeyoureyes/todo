@@ -3,6 +3,8 @@ var todolist = [{id:1272, text:"do something crazy", done:true}, {id:1288, text:
 var todomother = document.getElementsByClassName("collection")[0];
 var queue = [];
 var hidden = [];
+var countTodo = 0;
+var countDone = 0;
 
 function makeDoneTodo () {
   var id = parseInt(this.id.split("toggle-")[1]);
@@ -14,13 +16,18 @@ function makeDoneTodo () {
     h4.classList.remove("cross");
     child.style.display = "none";
     this.parentElement.done = "false";
+    countTodo += 1;
+    countDone -=1;
   } else {
     this.classList.add("load-complete");
     queue.push({event:"done", done: true, id: id});
     h4.classList.add("cross");
     child.style.display = "block";
     this.parentElement.done = "true";
+    countTodo -=1;
+    countDone +=1;
   }
+  countChange();
 }
 
 function alreadyDone () {
@@ -31,21 +38,29 @@ function alreadyDone () {
     h4.classList.remove("cross");
     child.style.display = "none";
     this.parentElement.done = "false";
+    countTodo += 1;
+    countDone -=1;
   } else {
     this.classList.add("load-complete");
     h4.classList.add("cross");
     child.style.display = "block";
     this.parentElement.done = "true";
+    countTodo -=1;
+    countDone +=1;
   }
+  countChange();
 }
 
 function deleteTodo () {
   var id = parseInt(this.id.split("delete-")[1]);
   todomother.removeChild(document.getElementById("li-" + id));
   queue.push({event:"remove", id: id})
+  if (!this.parentElement.children[0].classList.contains("load-complete")) {countTodo += 1;}
 }
 
 function addTodoElement (todo, pusher) {
+  countTodo += 1;
+  countChange();
   if (!pusher) {document.getElementsByClassName("toggle-all")[0].checked = true;}
   var todostring = `<div class="todo" id="${todo.id}">
       <div class="circle-loader checkbox" id="toggle-${todo.id}">
@@ -104,6 +119,10 @@ function getTodo () {
     addData = {text: text, id : Math.floor(Math.random() * (1000000 - 1 + 1)) + 1, done:false}
     return true;
   } else {return false, false}
+}
+
+function countChange () {
+  document.getElementsByClassName("footer")[0].children[0].innerText = `${countTodo} items left`;
 }
 
 //document.getElementsByClassName("todo").forEach
